@@ -34,6 +34,7 @@ tasks.withType(JavaCompile).configureEach {
 def appDisplayName = "Scrollo"
 def appImageName = "Scrollo"
 def jpackageOutputDir = layout.buildDirectory.dir("jpackage")
+def jpackageInstallerDir = layout.buildDirectory.dir("installer")
 def jpackageImageDir = jpackageOutputDir.map { it.dir(appImageName) }
 def distributionLibDir = layout.buildDirectory.dir("install/${application.applicationName}/lib")
 
@@ -81,5 +82,32 @@ tasks.register("packageWindowsPortable", Zip) {
     destinationDirectory = layout.buildDirectory.dir("distributions")
     from(jpackageOutputDir) {
         include "${appImageName}/**"
+    }
+}
+
+tasks.register("packageWindowsInstaller", Exec) {
+    group = "distribution"
+    description = "Creates a Windows installer EXE containing Scrollo and its private Java runtime."
+    dependsOn tasks.named("installDist")
+    inputs.dir(distributionLibDir)
+    outputs.dir(jpackageInstallerDir)
+
+    doFirst {
+        delete(jpackageInstallerDir)
+        commandLine(
+                jpackageExecutable.get(),
+                "--type", "exe",
+                "--name", appDisplayName,
+                "--app-version", project.version.toString(),
+                "--vendor", "Revision App",
+                "--dest", jpackageInstallerDir.get().asFile.absolutePath,
+                "--input", distributionLibDir.get().asFile.absolutePath,
+                "--main-jar", tasks.named("jar").get().archiveFileName.get(),
+                "--main-class", application.mainClass.get(),
+                "--java-options", "-Dfile.encoding=UTF-8",
+                "--win-dir-chooser",
+                "--win-menu",
+                "--win-shortcut"
+        )
     }
 }
