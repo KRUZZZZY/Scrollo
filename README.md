@@ -54,10 +54,20 @@ You can also build a portable Windows ZIP with a real `Scrollo.exe` launcher:
 The generated ZIP is:
 
 ```text
-build\distributions\Scrollo-1.0.0-windows-portable.zip
+build\distributions\Scrollo-1.0.2-windows-portable.zip
 ```
 
 The ZIP contains `Scrollo.exe` and a private Java runtime, so users should be able to extract it and run `Scrollo.exe` without installing Gradle or Java.
+
+## Uninstall
+
+The Windows installer registers Scrollo with Windows, so users can remove it through:
+
+```text
+Settings -> Apps -> Installed apps -> Scrollo -> Uninstall
+```
+
+The portable ZIP does not install anything. To remove the portable version, delete the extracted `Scrollo` folder.
 
 ## GitHub Release
 
@@ -72,17 +82,17 @@ To publish a downloadable Windows `.exe` on GitHub:
 1. Push this repository to GitHub.
 2. Open the repository on GitHub.
 3. Go to `Actions` -> `Windows release` -> `Run workflow`.
-4. Use a release tag such as `v1.0.1`.
+4. Use a release tag such as `v1.0.2`.
 
 The workflow builds on GitHub, creates or updates the Release, and uploads both:
 
 ```text
-Scrollo-1.0.1.exe
-Scrollo-1.0.1-windows-portable.zip
+Scrollo-1.0.2.exe
+Scrollo-1.0.2-windows-portable.zip
 ```
 
 A local copy of the portable ZIP can also be kept in:
 
 ```text
-release\Scrollo-1.0.0-windows-portable.zip
+release\Scrollo-1.0.2-windows-portable.zip
 ```

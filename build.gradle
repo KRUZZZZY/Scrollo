@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "revisionapp"
-version = "1.0.1"
+version = "1.0.2"
 
 java {
     toolchain {
@@ -33,6 +33,8 @@ tasks.withType(JavaCompile).configureEach {
 
 def appDisplayName = "Scrollo"
 def appImageName = "Scrollo"
+def appDescription = "Desktop revision app for CS-375 study."
+def windowsMenuGroup = "Scrollo"
 def windowsUpgradeUuid = "9b11d617-1d83-4baf-a635-32e50645ef4d"
 def jpackageOutputDir = layout.buildDirectory.dir("jpackage")
 def jpackageInstallerDir = layout.buildDirectory.dir("installer")
@@ -66,6 +68,7 @@ tasks.register("jpackageImage", Exec) {
                 "--name", appDisplayName,
                 "--app-version", project.version.toString(),
                 "--vendor", "Revision App",
+                "--description", appDescription,
                 "--dest", jpackageOutputDir.get().asFile.absolutePath,
                 "--input", distributionLibDir.get().asFile.absolutePath,
                 "--main-jar", tasks.named("jar").get().archiveFileName.get(),
@@ -101,6 +104,7 @@ tasks.register("packageWindowsInstaller", Exec) {
                 "--name", appDisplayName,
                 "--app-version", project.version.toString(),
                 "--vendor", "Revision App",
+                "--description", appDescription,
                 "--dest", jpackageInstallerDir.get().asFile.absolutePath,
                 "--input", distributionLibDir.get().asFile.absolutePath,
                 "--main-jar", tasks.named("jar").get().archiveFileName.get(),
@@ -110,6 +114,7 @@ tasks.register("packageWindowsInstaller", Exec) {
                 "--win-per-user-install",
                 "--win-dir-chooser",
                 "--win-menu",
+                "--win-menu-group", windowsMenuGroup,
                 "--win-shortcut"
         )
     }
