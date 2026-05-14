@@ -72,13 +72,13 @@ To publish a downloadable Windows `.exe` on GitHub:
 1. Push this repository to GitHub.
 2. Open the repository on GitHub.
 3. Go to `Actions` -> `Windows release` -> `Run workflow`.
-4. Use a release tag such as `v1.0.0`.
+4. Use a release tag such as `v1.0.1`.
 
 The workflow builds on GitHub, creates or updates the Release, and uploads both:
 
 ```text
-Scrollo-1.0.0.exe
-Scrollo-1.0.0-windows-portable.zip
+Scrollo-1.0.1.exe
+Scrollo-1.0.1-windows-portable.zip
 ```
 
 A local copy of the portable ZIP can also be kept in:
