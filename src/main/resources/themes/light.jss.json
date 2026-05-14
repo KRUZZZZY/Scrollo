@@ -1,0 +1,59 @@
+{
+  "meta": {
+    "name": "Light",
+    "author": "Scrollo",
+    "version": "1.0"
+  },
+  "colors": {
+    "background": "#f8fafc",
+    "surface": "#ffffff",
+    "surface-raised": "#f1f5f9",
+    "border": "#e2e8f0",
+    "border-focus": "#6366f1",
+    "text-primary": "#0f172a",
+    "text-secondary": "#475569",
+    "text-muted": "#94a3b8",
+    "text-inverse": "#ffffff",
+    "accent": "#6366f1",
+    "accent-hover": "#4f46e5",
+    "accent-subtle": "rgba(99,102,241,0.1)",
+    "success": "#16a34a",
+    "success-subtle": "rgba(22,163,74,0.1)",
+    "danger": "#dc2626",
+    "danger-subtle": "rgba(220,38,38,0.1)",
+    "warning": "#d97706",
+    "warning-subtle": "rgba(217,119,6,0.1)",
+    "scrollbar-track": "#f1f5f9",
+    "scrollbar-thumb": "#cbd5e1",
+    "badge-bg": "#dcfce7",
+    "badge-border": "#16a34a",
+    "badge-text": "#15803d",
+    "overlay": "rgba(0,0,0,0.3)"
+  },
+  "typography": {
+    "font-body": "Crimson Pro",
+    "font-body-fallback": ["Georgia", "serif"],
+    "font-mono": "Space Mono",
+    "font-mono-fallback": ["Courier New", "monospace"],
+    "font-dyslexic": null,
+    "size-base": 13,
+    "size-2xl": 26
+  },
+  "shape": {
+    "radius-md": 8,
+    "radius-lg": 8,
+    "radius-pill": 99
+  },
+  "spacing": {
+    "sm": 8,
+    "md": 12,
+    "lg": 16,
+    "xl": 20
+  },
+  "components": {
+    "card": {
+      "background": "@surface",
+      "border-color": "@border"
+    }
+  }
+}

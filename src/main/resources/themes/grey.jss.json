@@ -1,0 +1,59 @@
+{
+  "meta": {
+    "name": "Grey",
+    "author": "Scrollo",
+    "version": "1.0"
+  },
+  "colors": {
+    "background": "#1a1a1a",
+    "surface": "#242424",
+    "surface-raised": "#2e2e2e",
+    "border": "#3a3a3a",
+    "border-focus": "#6366f1",
+    "text-primary": "#e0e0e0",
+    "text-secondary": "#a0a0a0",
+    "text-muted": "#606060",
+    "text-inverse": "#1a1a1a",
+    "accent": "#6366f1",
+    "accent-hover": "#4f46e5",
+    "accent-subtle": "rgba(99,102,241,0.15)",
+    "success": "#22c55e",
+    "success-subtle": "rgba(34,197,94,0.12)",
+    "danger": "#ef4444",
+    "danger-subtle": "rgba(239,68,68,0.12)",
+    "warning": "#f59e0b",
+    "warning-subtle": "rgba(245,158,11,0.12)",
+    "scrollbar-track": "#1a1a1a",
+    "scrollbar-thumb": "#3a3a3a",
+    "badge-bg": "#052e16",
+    "badge-border": "#22c55e",
+    "badge-text": "#4ade80",
+    "overlay": "rgba(0,0,0,0.5)"
+  },
+  "typography": {
+    "font-body": "Crimson Pro",
+    "font-body-fallback": ["Georgia", "serif"],
+    "font-mono": "Space Mono",
+    "font-mono-fallback": ["Courier New", "monospace"],
+    "font-dyslexic": null,
+    "size-base": 13,
+    "size-2xl": 26
+  },
+  "shape": {
+    "radius-md": 8,
+    "radius-lg": 8,
+    "radius-pill": 99
+  },
+  "spacing": {
+    "sm": 8,
+    "md": 12,
+    "lg": 16,
+    "xl": 20
+  },
+  "components": {
+    "card": {
+      "background": "@surface",
+      "border-color": "@border"
+    }
+  }
+}

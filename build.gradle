@@ -1,0 +1,85 @@
+plugins {
+    id "application"
+    id "org.openjfx.javafxplugin" version "0.1.0"
+}
+
+group = "revisionapp"
+version = "1.0.0"
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+application {
+    mainClass = "revisionapp.RevisionApplication"
+    applicationName = "scrollo"
+}
+
+javafx {
+    version = "21.0.5"
+    modules = ["javafx.controls", "javafx.graphics"]
+}
+
+dependencies {
+    implementation "com.fasterxml.jackson.core:jackson-databind:2.17.2"
+    implementation "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.17.2"
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = "UTF-8"
+}
+
+def appDisplayName = "Scrollo"
+def appImageName = "Scrollo"
+def jpackageOutputDir = layout.buildDirectory.dir("jpackage")
+def jpackageImageDir = jpackageOutputDir.map { it.dir(appImageName) }
+def distributionLibDir = layout.buildDirectory.dir("install/${application.applicationName}/lib")
+
+def jpackageExecutable = providers.provider {
+    def launcher = javaToolchains.launcherFor {
+        languageVersion = JavaLanguageVersion.of(17)
+    }.get()
+    def executableName = org.gradle.internal.os.OperatingSystem.current().isWindows() ? "jpackage.exe" : "jpackage"
+    def executable = new File(launcher.executablePath.asFile.parentFile, executableName)
+    if (!executable.exists()) {
+        throw new GradleException("Could not find ${executableName} next to ${launcher.executablePath.asFile}")
+    }
+    executable.absolutePath
+}
+
+tasks.register("jpackageImage", Exec) {
+    group = "distribution"
+    description = "Builds a self-contained Windows app image with a native Scrollo.exe launcher."
+    dependsOn tasks.named("installDist")
+    inputs.dir(distributionLibDir)
+    outputs.dir(jpackageImageDir)
+
+    doFirst {
+        delete(jpackageOutputDir)
+        commandLine(
+                jpackageExecutable.get(),
+                "--type", "app-image",
+                "--name", appDisplayName,
+                "--app-version", project.version.toString(),
+                "--vendor", "Revision App",
+                "--dest", jpackageOutputDir.get().asFile.absolutePath,
+                "--input", distributionLibDir.get().asFile.absolutePath,
+                "--main-jar", tasks.named("jar").get().archiveFileName.get(),
+                "--main-class", application.mainClass.get(),
+                "--java-options", "-Dfile.encoding=UTF-8"
+        )
+    }
+}
+
+tasks.register("packageWindowsPortable", Zip) {
+    group = "distribution"
+    description = "Creates a portable Windows ZIP containing Scrollo.exe and its private Java runtime."
+    dependsOn tasks.named("jpackageImage")
+    archiveFileName = "${appDisplayName}-${project.version}-windows-portable.zip"
+    destinationDirectory = layout.buildDirectory.dir("distributions")
+    from(jpackageOutputDir) {
+        include "${appImageName}/**"
+    }
+}

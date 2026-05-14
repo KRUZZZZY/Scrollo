@@ -1,0 +1,101 @@
+{
+  "meta": {
+    "name": "Dark",
+    "author": "Scrollo",
+    "version": "1.0"
+  },
+  "colors": {
+    "background": "#030712",
+    "surface": "#0a0f1e",
+    "surface-raised": "#111827",
+    "border": "#1e293b",
+    "border-focus": "#6366f1",
+    "text-primary": "#e0e7ff",
+    "text-secondary": "#9ca3af",
+    "text-muted": "#4b5563",
+    "text-inverse": "#030712",
+    "accent": "#6366f1",
+    "accent-hover": "#4f46e5",
+    "accent-subtle": "rgba(99,102,241,0.15)",
+    "success": "#22c55e",
+    "success-subtle": "rgba(34,197,94,0.12)",
+    "danger": "#ef4444",
+    "danger-subtle": "rgba(239,68,68,0.12)",
+    "warning": "#f59e0b",
+    "warning-subtle": "rgba(245,158,11,0.12)",
+    "scrollbar-track": "#030712",
+    "scrollbar-thumb": "#1f2937",
+    "badge-bg": "#052e16",
+    "badge-border": "#22c55e",
+    "badge-text": "#4ade80",
+    "overlay": "rgba(0,0,0,0.6)"
+  },
+  "typography": {
+    "font-body": "Crimson Pro",
+    "font-body-fallback": ["Georgia", "serif"],
+    "font-mono": "Space Mono",
+    "font-mono-fallback": ["Courier New", "monospace"],
+    "font-dyslexic": null,
+    "size-xs": 10,
+    "size-sm": 11,
+    "size-base": 13,
+    "size-md": 14,
+    "size-lg": 16,
+    "size-xl": 20,
+    "size-2xl": 26,
+    "size-3xl": 32,
+    "weight-normal": 400,
+    "weight-bold": 700,
+    "line-height-tight": 1.3,
+    "line-height-normal": 1.6,
+    "line-height-loose": 1.9,
+    "letter-spacing-normal": "0em",
+    "letter-spacing-wide": "0.1em",
+    "letter-spacing-wider": "0.2em"
+  },
+  "shape": {
+    "radius-sm": 6,
+    "radius-md": 8,
+    "radius-lg": 8,
+    "radius-pill": 99,
+    "border-width": 1,
+    "border-width-thick": 1.5
+  },
+  "spacing": {
+    "xs": 4,
+    "sm": 8,
+    "md": 12,
+    "lg": 16,
+    "xl": 20,
+    "2xl": 28,
+    "3xl": 40
+  },
+  "motion": {
+    "duration-fast": "0.1s",
+    "duration-normal": "0.15s",
+    "duration-slow": "0.3s",
+    "easing": "ease-in-out"
+  },
+  "components": {
+    "card": {
+      "background": "@surface",
+      "border-color": "@border",
+      "border-radius": "@radius-lg",
+      "padding": "@lg"
+    },
+    "button-primary": {
+      "background": "@accent",
+      "text": "@text-primary",
+      "border-radius": "@radius-md",
+      "padding-x": "@lg",
+      "padding-y": "@sm"
+    },
+    "input": {
+      "background": "@surface",
+      "border-color": "@border",
+      "text": "@text-primary",
+      "border-radius": "@radius-md",
+      "font": "@font-mono"
+    }
+  }
+}

@@ -1,0 +1,859 @@
+{
+  "id" : "cs375-logic",
+  "name" : "CS-375 Logic, Proof & Computation",
+  "institution" : "Swansea University",
+  "version" : "1.0.1",
+  "description" : "Propositional and predicate logic, SAT, resolution, natural deduction, model theory basics, and exam-style revision practice.",
+  "categories" : [ {
+    "key" : "found",
+    "label" : "Foundations",
+    "color" : {
+      "bg" : "rgba(99,102,241,0.15)",
+      "border" : "#6366f1",
+      "text" : "#a5b4fc"
+    }
+  }, {
+    "key" : "sem",
+    "label" : "Semantics & Satisfiability",
+    "color" : {
+      "bg" : "rgba(20,184,166,0.15)",
+      "border" : "#14b8a6",
+      "text" : "#5eead4"
+    }
+  }, {
+    "key" : "norm",
+    "label" : "Normal Forms",
+    "color" : {
+      "bg" : "rgba(245,158,11,0.15)",
+      "border" : "#f59e0b",
+      "text" : "#fcd34d"
+    }
+  }, {
+    "key" : "res",
+    "label" : "Resolution",
+    "color" : {
+      "bg" : "rgba(239,68,68,0.15)",
+      "border" : "#ef4444",
+      "text" : "#fca5a5"
+    }
+  }, {
+    "key" : "sat",
+    "label" : "DPLL & SAT",
+    "color" : {
+      "bg" : "rgba(34,197,94,0.15)",
+      "border" : "#22c55e",
+      "text" : "#86efac"
+    }
+  }, {
+    "key" : "nd",
+    "label" : "Natural Deduction",
+    "color" : {
+      "bg" : "rgba(168,85,247,0.15)",
+      "border" : "#a855f7",
+      "text" : "#d8b4fe"
+    }
+  }, {
+    "key" : "pred",
+    "label" : "Predicate Logic",
+    "color" : {
+      "bg" : "rgba(236,72,153,0.15)",
+      "border" : "#ec4899",
+      "text" : "#f9a8d4"
+    }
+  }, {
+    "key" : "models",
+    "label" : "Structures & Models",
+    "color" : {
+      "bg" : "rgba(59,130,246,0.15)",
+      "border" : "#3b82f6",
+      "text" : "#93c5fd"
+    }
+  }, {
+    "key" : "sound",
+    "label" : "Soundness & Completeness",
+    "color" : {
+      "bg" : "rgba(217,70,239,0.15)",
+      "border" : "#d946ef",
+      "text" : "#f0abfc"
+    }
+  }, {
+    "key" : "comp",
+    "label" : "Compactness",
+    "color" : {
+      "bg" : "rgba(249,115,22,0.15)",
+      "border" : "#f97316",
+      "text" : "#fdba74"
+    }
+  }, {
+    "key" : "disc",
+    "label" : "Discussion Questions",
+    "color" : {
+      "bg" : "rgba(148,163,184,0.15)",
+      "border" : "#94a3b8",
+      "text" : "#cbd5e1"
+    }
+  } ],
+  "definitions" : [ {
+    "topic" : "sem",
+    "term" : "Assignment",
+    "def" : "A mapping from a finite set of propositional variables to Boolean truth values {0,1}. It specifies the truth value of each atomic proposition."
+  }, {
+    "topic" : "found",
+    "term" : "Atom",
+    "def" : "A basic propositional symbol with no internal logical structure, representing an indivisible proposition."
+  }, {
+    "topic" : "norm",
+    "term" : "BDD",
+    "def" : "A Binary Decision Diagram is a directed acyclic graph representing a Boolean function by branching on variable assignments."
+  }, {
+    "topic" : "norm",
+    "term" : "Clause",
+    "def" : "A disjunction of Literals."
+  }, {
+    "topic" : "norm",
+    "term" : "CNF",
+    "def" : "Conjunctive Normal Form is a conjunction of Clauses."
+  }, {
+    "topic" : "sound",
+    "term" : "Completeness",
+    "def" : "A proof system is complete if every semantically valid formula can be formally derived within the system."
+  }, {
+    "topic" : "comp",
+    "term" : "Compactness",
+    "def" : "If every finite subset of a set of formulas is satisfiable, then the entire set is satisfiable."
+  }, {
+    "topic" : "found",
+    "term" : "Conjunction",
+    "def" : "A binary connective (A ∧ B) that is true iff both operands are true."
+  }, {
+    "topic" : "nd",
+    "term" : "Consistency",
+    "def" : "A set of formulas is consistent if no Contradiction can be formally derived from it."
+  }, {
+    "topic" : "sem",
+    "term" : "Contradiction",
+    "def" : "The false formula ⊥, or any formula false under every Assignment."
+  }, {
+    "topic" : "found",
+    "term" : "Depth",
+    "def" : "The maximum nesting level of logical connectives in a Formula."
+  }, {
+    "topic" : "nd",
+    "term" : "Derivation",
+    "def" : "A finite sequence of formulas where each follows from previous formulas by inference rules."
+  }, {
+    "topic" : "found",
+    "term" : "Disjunction",
+    "def" : "A binary connective (A ∨ B) true iff at least one operand is true."
+  }, {
+    "topic" : "norm",
+    "term" : "DNF",
+    "def" : "Disjunctive Normal Form is a disjunction of conjunctive clauses of Literals."
+  }, {
+    "topic" : "sat",
+    "term" : "DPLL",
+    "def" : "Davis–Putnam–Logemann–Loveland algorithm: a proof/search procedure for deciding unsatisfiability of CNF formulas using splitting, unit propagation, reduction, and conflict detection."
+  }, {
+    "topic" : "sem",
+    "term" : "Equivalence",
+    "def" : "Two formulas are equivalent if they have identical truth values under every Assignment (or every Structure in predicate logic)."
+  }, {
+    "topic" : "found",
+    "term" : "Formula",
+    "def" : "A syntactically well-formed expression built recursively from Atoms using logical connectives (and quantifiers in predicate logic)."
+  }, {
+    "topic" : "found",
+    "term" : "Gate",
+    "def" : "A Boolean function (f:{0,1}^n → {0,1})."
+  }, {
+    "topic" : "norm",
+    "term" : "Horn",
+    "def" : "A formula in CNF where each Clause contains at most one positive Literal."
+  }, {
+    "topic" : "found",
+    "term" : "Implication",
+    "def" : "A connective (A → B), false only when A is true and B is false."
+  }, {
+    "topic" : "found",
+    "term" : "Induction",
+    "def" : "A proof principle establishing a property for all recursively defined objects by proving base and recursive cases."
+  }, {
+    "topic" : "norm",
+    "term" : "Literal",
+    "def" : "Either an Atom or its Negation."
+  }, {
+    "topic" : "models",
+    "term" : "Model",
+    "def" : "An interpretation under which a Formula evaluates true. In propositional logic this is an Assignment; in predicate logic a Structure."
+  }, {
+    "topic" : "found",
+    "term" : "Negation",
+    "def" : "Unary connective ¬A, true iff A is false."
+  }, {
+    "topic" : "pred",
+    "term" : "Predicate",
+    "def" : "A symbol denoting a relation over objects in a Structure."
+  }, {
+    "topic" : "pred",
+    "term" : "Prenex",
+    "def" : "A formula is in prenex normal form if all Quantifiers appear at the front, followed by a quantifier-free matrix."
+  }, {
+    "topic" : "pred",
+    "term" : "Quantifier",
+    "def" : "Logical operators binding variables: universal (∀) and existential (∃)."
+  }, {
+    "topic" : "res",
+    "term" : "Resolution",
+    "def" : "An inference rule deriving a new Clause from two clauses containing complementary Literals."
+  }, {
+    "topic" : "res",
+    "term" : "Resolvent",
+    "def" : "The Clause produced by applying Resolution to two parent clauses."
+  }, {
+    "topic" : "sat",
+    "term" : "SAT",
+    "def" : "The decision problem of determining whether a Formula is Satisfiable."
+  }, {
+    "topic" : "sem",
+    "term" : "Satisfiability",
+    "def" : "A formula is satisfiable if there exists at least one Model making it true."
+  }, {
+    "topic" : "sem",
+    "term" : "Semantics",
+    "def" : "The formal meaning of logical expressions via interpretations assigning truth values."
+  }, {
+    "topic" : "nd",
+    "term" : "Sequent",
+    "def" : "An expression of the form Γ ⊢ A stating A is derivable from assumptions Γ."
+  }, {
+    "topic" : "pred",
+    "term" : "Signature",
+    "def" : "A triple ((S,F,P)) specifying sorts, function symbols, and predicate symbols for predicate logic."
+  }, {
+    "topic" : "sound",
+    "term" : "Soundness",
+    "def" : "A proof system is sound if every derivable formula is semantically valid."
+  }, {
+    "topic" : "models",
+    "term" : "Structure",
+    "def" : "An interpretation assigning meanings to symbols of a Signature."
+  }, {
+    "topic" : "pred",
+    "term" : "Substitution",
+    "def" : "Replacing variables in a Formula with terms or formulas while preserving syntactic correctness."
+  }, {
+    "topic" : "found",
+    "term" : "Syntax",
+    "def" : "The formal rules specifying which symbol strings are valid Formulas."
+  }, {
+    "topic" : "sem",
+    "term" : "Tautology",
+    "def" : "A propositional formula true under every Assignment."
+  }, {
+    "topic" : "pred",
+    "term" : "Term",
+    "def" : "A syntactic expression denoting an object in predicate logic, built from constants, variables, and function symbols."
+  }, {
+    "topic" : "sem",
+    "term" : "Validity",
+    "def" : "A formula true in every Model (or every Structure)."
+  }, {
+    "topic" : "pred",
+    "term" : "Variable",
+    "def" : "A symbol standing for an arbitrary object (predicate logic) or truth-valued proposition (propositional logic)."
+  }, {
+    "topic" : "nd",
+    "term" : "Proof",
+    "def" : "A complete Derivation establishing a conclusion."
+  }, {
+    "topic" : "sem",
+    "term" : "Consequence",
+    "def" : "A formula logically implied by a set of premises."
+  }, {
+    "topic" : "res",
+    "term" : "Refutation",
+    "def" : "A proof of unsatisfiability by deriving Contradiction."
+  }, {
+    "topic" : "res",
+    "term" : "Subsumption",
+    "def" : "A clause relation used in simplifying Resolution."
+  }, {
+    "topic" : "res",
+    "term" : "Unit",
+    "def" : "A Clause containing exactly one Literal."
+  }, {
+    "topic" : "sat",
+    "term" : "Conflict",
+    "def" : "In DPLL, detection of the empty clause showing unsatisfiability."
+  } ],
+"flashcards" : [
+  {
+    "topic": "found",
+    "q": "Q1: What is the difference between syntax and semantics?",
+    "a": "Syntax: rules defining well-formed formulas. Concerned with form only. Semantics: assigns meaning/truth values to formulas under interpretations. Recursive syntax rules: atoms, ⊤, ⊥ are formulas; if A formula then ¬A formula; if A,B formulas then (A ∧ B), (A ∨ B), (A → B) formulas. Example: (A ∧ B) is syntactically valid, but semantically false if A=1 and B=0. Key idea: syntax = form, semantics = meaning.",
+    "tags": []
+  },
+  {
+    "topic": "found",
+    "q": "Q2: What is a formula and how is it recursively constructed?",
+    "a": "Recursive construction: 1. Base: every atomic proposition Pi, ⊤ and ⊥ are formulas. 2. If A formula then ¬A formula. 3. If A,B formulas then (A ∧ B), (A ∨ B), (A → B) are formulas. A formula is well-formed iff generated by finitely many applications of these rules. Recursive structure gives unique parse trees and allows structural induction.",
+    "tags": []
+  },
+  {
+    "topic": "found",
+    "q": "Q3: Explain why logical equivalence matters in Computer Science.",
+    "a": "A ≡ B iff both formulas have identical truth values under every assignment. Importance: formula simplification, circuit optimisation, SAT preprocessing, compiler optimisation, and program verification. Example equivalence: A → B ≡ ¬A ∨ B.",
+    "tags": []
+  },
+  {
+    "topic": "sem",
+    "q": "Q4: What is the difference between: - Valid - Satisfiable - Unsatisfiable - Contradiction - Tautology",
+    "a": "Valid/Tautology: true under all assignments. Satisfiable: true under at least one assignment. Unsatisfiable: true under no assignments. Contradiction: always false, equivalent to ⊥. Every tautology is satisfiable, but not every satisfiable formula is valid.",
+    "tags": []
+  },
+  {
+    "topic": "sem",
+    "q": "Q5: How would you justify whether this is true? \"If (F) is satisfiable and (F → G) is satisfiable, then (G) is satisfiable.\"",
+    "a": "The statement is FALSE. Counterexample: let F=A and G=⊥. Then F is satisfiable. Also F → G = A → ⊥ ≡ ¬A, which is satisfiable. But G=⊥ is not satisfiable. Therefore the claim fails.",
+    "tags": []
+  },
+  {
+    "topic": "sem",
+    "q": "Q6: Explain the relationship between validity and satisfiability.",
+    "a": "Key theorem: F valid ⇔ ¬F unsatisfiable. If F is true under every assignment, then ¬F is false under every assignment. Conversely, if ¬F has no satisfying assignment, then F must always be true.",
+    "tags": []
+  },
+  {
+    "topic": "sem",
+    "q": "Q7: Why is every tautology satisfiable, but not every satisfiable formula valid? Give example of each.",
+    "a": "A tautology is true under every assignment, so it must be satisfiable. Example tautology: A ∨ ¬A. A satisfiable formula only needs one satisfying assignment, so it may fail under others. Example: A ∧ B is satisfiable but not valid.",
+    "tags": []
+  },
+  {
+    "topic": "norm",
+    "q": "Q8: How would you distinguish CNF from DNF?",
+    "a": "CNF = conjunction of clauses, where each clause is a disjunction of literals. Example: (A ∨ ¬B) ∧ (¬A ∨ C). DNF = disjunction of conjunctions. Example: (A ∧ B) ∨ (¬A ∧ C). CNF has ∧ outside and ∨ inside. DNF has ∨ outside and ∧ inside. CNF is preferred for SAT solving; DNF makes satisfiability checking easy.",
+    "tags": []
+  },
+  {
+    "topic": "norm",
+    "q": "Q9: Why is CNF preferred for SAT solving?",
+    "a": "Reasons: clause-based reasoning, resolution operates directly on clauses, and DPLL algorithms are designed for CNF input. CNF supports efficient propagation and conflict analysis.",
+    "tags": []
+  },
+  {
+    "topic": "norm",
+    "q": "Q10: Why does converting CNF to DNF cause exponential blow-up? Mention distributivity explosion.",
+    "a": "Repeated distributivity expands every clause combination. A CNF with n clauses of size m may generate up to m^n conjunctions in DNF. This exponential growth is called distributivity explosion.",
+    "tags": []
+  },
+  {
+    "topic": "norm",
+    "q": "Q11: What makes a Horn formula computationally special?",
+    "a": "A Horn clause has at most one positive literal. Example: ¬A ∨ ¬B ∨ C, equivalent to (A ∧ B) → C. Horn satisfiability is solvable in polynomial time and forms the basis of Prolog and logic programming.",
+    "tags": []
+  },
+  {
+    "topic": "res",
+    "q": "Q12: How would you prove resolution is sound?",
+    "a": "Assume the parent clauses are true under some assignment. If one clause contains A and another contains ¬A, then at least one of the remaining literals must be true. Therefore the resolvent must also be true. Hence every resolution step preserves logical consequence, so resolution is sound.",
+    "tags": []
+  },
+  {
+    "topic": "res",
+    "q": "Q13: How would you disprove a modified inference rule?",
+    "a": "Construct a countermodel: make all premises true while making the conclusion false. Example: from A ∨ B infer A. Countermodel: A=0, B=1. Premise true, conclusion false, so the rule is unsound.",
+    "tags": []
+  },
+  {
+    "topic": "res",
+    "q": "Q14: How do you build a resolution derivation of ⊥?",
+    "a": "Procedure: 1. Convert formulas to CNF. 2. Label clauses. 3. Resolve clauses containing complementary literals. 4. Continue until deriving the empty clause ⊥. Example chain: A, ¬A ⇒ ⊥.",
+    "tags": []
+  },
+  {
+    "topic": "res",
+    "q": "Q15: Why does deriving the empty clause prove unsatisfiability?",
+    "a": "The empty clause ⊥ represents falsehood and is unsatisfiable. If resolution derives ⊥ from a clause set F, then F logically entails contradiction. By soundness and refutation completeness, F has no satisfying assignment.",
+    "tags": []
+  },
+  {
+    "topic": "res",
+    "q": "Q16: Why can a CNF with at least one negative literal in every clause fail to derive ⊥?",
+    "a": "If every clause contains a negative literal, assign every variable false. Then each negative literal becomes true, so every clause is satisfied. Therefore the CNF is satisfiable, and sound resolution cannot derive ⊥.",
+    "tags": []
+  },
+  {
+    "topic": "res",
+    "q": "Q17: What is the difference between: - Resolution soundness - Resolution completeness - Refutation completeness",
+    "a": "Soundness: every derived clause is logically entailed. Completeness: every logically entailed clause can in principle be derived. Refutation completeness: if a clause set is unsatisfiable, resolution can derive ⊥.",
+    "tags": []
+  },
+  {
+    "topic": "sat",
+    "q": "Q18: Describe DPLL step-by-step.",
+    "a": "Main DPLL steps: 1. Unit propagation. 2. Pure literal elimination. 3. Splitting/branching on variables. 4. Backtracking after conflicts. 5. Conflict detection. DPLL is sound and complete and underlies modern SAT solving.",
+    "tags": []
+  },
+  {
+    "topic": "sat",
+    "q": "Q19: Resolution vs DPLL — compare.",
+    "a": "Resolution is a proof system producing derivations from clauses. DPLL is a search algorithm producing either a satisfying assignment or UNSAT result. Resolution is mainly theoretical; DPLL is the practical basis of SAT solvers. Both are sound and complete.",
+    "tags": []
+  },
+  {
+    "topic": "sat",
+    "q": "Q20: Why is SAT NP-complete?",
+    "a": "SAT is in NP because a proposed assignment can be checked in polynomial time. SAT is NP-hard by the Cook-Levin theorem, which shows every NP problem can be reduced to SAT. Therefore SAT is NP-complete.",
+    "tags": []
+  },
+  {
+    "topic": "sat",
+    "q": "Q21: Compare complexity of: - SAT - 2-SAT - 3-SAT - Horn-SAT",
+    "a": "SAT: NP-complete. 3-SAT: NP-complete. 2-SAT: solvable in polynomial time. Horn-SAT: solvable in polynomial time. Predicate satisfiability is undecidable.",
+    "tags": []
+  },
+  {
+    "topic": "sat",
+    "q": "Q22: Why is 2-SAT polynomial but 3-SAT NP-complete?",
+    "a": "2-SAT has restricted clause structure allowing polynomial-time graph algorithms and bounded resolution growth. 3-SAT is expressive enough to encode arbitrary computation, making it NP-complete.",
+    "tags": []
+  },
+  {
+    "topic": "nd",
+    "q": "Q23: How would you prove a formula using natural deduction?",
+    "a": "Strategy: identify the main connective of the target formula, use the matching introduction rule, open assumptions when needed, derive intermediate results using elimination rules, then discharge assumptions correctly.",
+    "tags": []
+  },
+  {
+    "topic": "nd",
+    "q": "Q24: When should you use: - ∧ introduction - ∨ elimination - → introduction - RAA - EFQ",
+    "a": "Use ∧ introduction when proving both conjuncts. Use ∨ elimination for proof by cases. Use → introduction by assuming the antecedent and deriving the consequent. Use RAA for contradiction proofs. Use EFQ once ⊥ has been derived.",
+    "tags": []
+  },
+  {
+    "topic": "nd",
+    "q": "Q25: How would you prove implication (A → B)?",
+    "a": "Assume A, derive B, then discharge the assumption using implication introduction (→+).",
+    "tags": []
+  },
+  {
+    "topic": "nd",
+    "q": "Q26: Why is assumption discharge essential? This tests real ND understanding.",
+    "a": "Discharge allows temporary assumptions to be removed from dependency lists. Without discharge, implication proofs and contradiction arguments would not work correctly. It enables conditional reasoning.",
+    "tags": []
+  },
+  {
+    "topic": "pred",
+    "q": "Q27: Why is predicate logic more expressive than propositional logic?",
+    "a": "Predicate logic adds quantifiers, objects, functions, and relations. It can express general statements such as ∀x(P(x) → Q(x)), which propositional logic cannot represent.",
+    "tags": []
+  },
+  {
+    "topic": "pred",
+    "q": "Q28: What is a signature and why is it needed?",
+    "a": "A signature Σ defines the vocabulary of the logic. It contains sorts, function symbols, and predicate symbols. Structures interpret symbols from the signature.",
+    "tags": []
+  },
+  {
+    "topic": "pred",
+    "q": "Q29: What is the difference between: - Term - Formula - Predicate - Structure",
+    "a": "A term denotes an object. A formula denotes a truth value. A predicate is a relation symbol. A structure provides interpretations for constants, functions, and predicates over a domain.",
+    "tags": []
+  },
+  {
+    "topic": "pred",
+    "q": "Q30: How would you formalise an English statement into predicate logic?",
+    "a": "Method: 1. Identify the domain. 2. Choose predicates/functions. 3. Translate quantifiers carefully. 4. Check scope and implication direction. Common mistake: using ∧ instead of → after ∀.",
+    "tags": []
+  },
+  {
+    "topic": "pred",
+    "q": "Q31: How would you answer a bisimulation formalisation question?",
+    "a": "Define variables and relations carefully. Translate universal conditions with ∀ and existence conditions with ∃. Encode the forward and backward simulation conditions using implications and conjunctions.",
+    "tags": []
+  },
+  {
+    "topic": "pred",
+    "q": "Q32: What are common quantifier mistakes? - Reversing ∀ and ∃ - Wrong scope - Missing implication",
+    "a": "Common mistakes: reversing ∀ and ∃, incorrect quantifier scope, missing implications after universal quantifiers, and using → instead of ∧ inside existential statements.",
+    "tags": []
+  },
+  {
+    "topic": "models",
+    "q": "Q33: What makes something a structure?",
+    "a": "A structure consists of carrier/domain sets together with interpretations for constants, functions, and predicates.",
+    "tags": []
+  },
+  {
+    "topic": "models",
+    "q": "Q34: How does model satisfaction differ between propositional and predicate logic?",
+    "a": "In propositional logic, satisfaction depends only on truth assignments to atoms. In predicate logic, satisfaction depends on a structure, domain, interpretations of symbols, and usually a variable assignment.",
+    "tags": []
+  },
+  {
+    "topic": "sound",
+    "q": "Q35: State Gödel's Completeness Theorem.",
+    "a": "Gödel Completeness Theorem: Γ ⊨ A iff Γ ⊢ A. Every semantically valid formula is formally provable, and every provable formula is semantically valid.",
+    "tags": []
+  },
+  {
+    "topic": "sound",
+    "q": "Q36: Why is completeness important for Computer Science?",
+    "a": "Completeness guarantees that all semantically correct results are derivable in the proof system. Applications include automated theorem proving, verification, proof assistants, and logical reasoning systems.",
+    "tags": []
+  },
+  {
+    "topic": "sound",
+    "q": "Q37: Soundness vs completeness — explain clearly.",
+    "a": "Soundness means every provable statement is true. Completeness means every true statement is provable. Phrase to remember: soundness prevents proving falsehoods; completeness ensures all truths are provable.",
+    "tags": []
+  },
+  {
+    "topic": "comp",
+    "q": "Q38: State the Compactness Theorem.",
+    "a": "Compactness Theorem: if every finite subset of Γ is satisfiable, then Γ itself is satisfiable. Equivalently, if Γ is unsatisfiable, some finite subset of Γ is already unsatisfiable.",
+    "tags": []
+  },
+  {
+    "topic": "comp",
+    "q": "Q39: Why does compactness matter?",
+    "a": "Compactness reduces infinite logical reasoning to finite subsets. It is important for existence proofs, decidability arguments, model theory, and understanding logical expressiveness limitations.",
+    "tags": []
+  },
+  {
+    "topic": "comp",
+    "q": "Q40: How does compactness relate to completeness?",
+    "a": "Completeness and compactness are closely linked. Compactness can be proved using completeness: if Γ were unsatisfiable, completeness gives a finite proof of contradiction using finitely many premises.",
+    "tags": []
+  },
+  {
+    "topic": "disc",
+    "q": "Q41: Briefly discuss satisfiability problems for propositional and predicate logic regarding decidability and complexity.",
+    "a": "Propositional SAT is decidable and NP-complete. 2-SAT is polynomial-time solvable. 3-SAT is NP-complete. Horn-SAT is polynomial-time solvable. Predicate satisfiability is undecidable.",
+    "tags": []
+  },
+  {
+    "topic": "disc",
+    "q": "Q42: Why is predicate satisfiability undecidable?",
+    "a": "Predicate logic is expressive enough to encode Turing machine computations and the halting problem. Therefore no algorithm can decide satisfiability for all predicate formulas.",
+    "tags": []
+  },
+  {
+    "topic": "disc",
+    "q": "Q43: Why do stronger logics often lose decidability?",
+    "a": "Greater expressive power allows stronger logics to encode richer computational behaviour and unbounded reasoning. This extra expressiveness often leads to undecidability.",
+    "tags": []
+  }
+],
+  "quiz" : [ {
+    "topic" : "sem",
+    "question" : "Which term matches this definition: A mapping from a finite set of propositional variables to Boolean truth values {0,1}. It specifies the truth value of each atomic proposition.",
+    "options" : [ "Assignment", "Conjunction", "Gate", "SAT" ],
+    "answer" : 0,
+    "explanation" : "Assignment: A mapping from a finite set of propositional variables to Boolean truth values {0,1}. It specifies the truth value of each atomic proposition."
+  }, {
+    "topic" : "found",
+    "question" : "Which term matches this definition: A basic propositional symbol with no internal logical structure, representing an indivisible proposition.",
+    "options" : [ "Consistency", "Atom", "Horn", "Satisfiability" ],
+    "answer" : 1,
+    "explanation" : "Atom: A basic propositional symbol with no internal logical structure, representing an indivisible proposition."
+  }, {
+    "topic" : "norm",
+    "question" : "Which term matches this definition: A Binary Decision Diagram is a directed acyclic graph representing a Boolean function by branching on variable assignments.",
+    "options" : [ "Contradiction", "Implication", "BDD", "Semantics" ],
+    "answer" : 2,
+    "explanation" : "BDD: A Binary Decision Diagram is a directed acyclic graph representing a Boolean function by branching on variable assignments."
+  }, {
+    "topic" : "norm",
+    "question" : "Which term matches this definition: A disjunction of Literals.",
+    "options" : [ "Depth", "Induction", "Sequent", "Clause" ],
+    "answer" : 3,
+    "explanation" : "Clause: A disjunction of Literals."
+  }, {
+    "topic" : "norm",
+    "question" : "Which term matches this definition: Conjunctive Normal Form is a conjunction of Clauses.",
+    "options" : [ "CNF", "Derivation", "Literal", "Signature" ],
+    "answer" : 0,
+    "explanation" : "CNF: Conjunctive Normal Form is a conjunction of Clauses."
+  }, {
+    "topic" : "sound",
+    "question" : "Which term matches this definition: A proof system is complete if every semantically valid formula can be formally derived within the system.",
+    "options" : [ "Disjunction", "Completeness", "Model", "Soundness" ],
+    "answer" : 1,
+    "explanation" : "Completeness: A proof system is complete if every semantically valid formula can be formally derived within the system."
+  }, {
+    "topic" : "comp",
+    "question" : "Which term matches this definition: If every finite subset of a set of formulas is satisfiable, then the entire set is satisfiable.",
+    "options" : [ "DNF", "Negation", "Compactness", "Structure" ],
+    "answer" : 2,
+    "explanation" : "Compactness: If every finite subset of a set of formulas is satisfiable, then the entire set is satisfiable."
+  }, {
+    "topic" : "found",
+    "question" : "Which term matches this definition: A binary connective (A ∧ B) that is true iff both operands are true.",
+    "options" : [ "DPLL", "Predicate", "Substitution", "Conjunction" ],
+    "answer" : 3,
+    "explanation" : "Conjunction: A binary connective (A ∧ B) that is true iff both operands are true."
+  }, {
+    "topic" : "nd",
+    "question" : "Which term matches this definition: A set of formulas is consistent if no Contradiction can be formally derived from it.",
+    "options" : [ "Consistency", "Equivalence", "Prenex", "Syntax" ],
+    "answer" : 0,
+    "explanation" : "Consistency: A set of formulas is consistent if no Contradiction can be formally derived from it."
+  }, {
+    "topic" : "sem",
+    "question" : "Which term matches this definition: The false formula ⊥, or any formula false under every Assignment.",
+    "options" : [ "Formula", "Contradiction", "Quantifier", "Tautology" ],
+    "answer" : 1,
+    "explanation" : "Contradiction: The false formula ⊥, or any formula false under every Assignment."
+  }, {
+    "topic" : "found",
+    "question" : "Which term matches this definition: The maximum nesting level of logical connectives in a Formula.",
+    "options" : [ "Gate", "Resolution", "Depth", "Term" ],
+    "answer" : 2,
+    "explanation" : "Depth: The maximum nesting level of logical connectives in a Formula."
+  }, {
+    "topic" : "nd",
+    "question" : "Which term matches this definition: A finite sequence of formulas where each follows from previous formulas by inference rules.",
+    "options" : [ "Horn", "Resolvent", "Validity", "Derivation" ],
+    "answer" : 3,
+    "explanation" : "Derivation: A finite sequence of formulas where each follows from previous formulas by inference rules."
+  }, {
+    "topic" : "found",
+    "question" : "Which term matches this definition: A binary connective (A ∨ B) true iff at least one operand is true.",
+    "options" : [ "Disjunction", "Implication", "SAT", "Variable" ],
+    "answer" : 0,
+    "explanation" : "Disjunction: A binary connective (A ∨ B) true iff at least one operand is true."
+  }, {
+    "topic" : "norm",
+    "question" : "Which term matches this definition: Disjunctive Normal Form is a disjunction of conjunctive clauses of Literals.",
+    "options" : [ "Induction", "DNF", "Satisfiability", "Proof" ],
+    "answer" : 1,
+    "explanation" : "DNF: Disjunctive Normal Form is a disjunction of conjunctive clauses of Literals."
+  }, {
+    "topic" : "sat",
+    "question" : "Which term matches this definition: Davis–Putnam–Logemann–Loveland algorithm: a proof/search procedure for deciding unsatisfiability of CNF formulas using splitting, unit propagation, reduction, and conflict detection.",
+    "options" : [ "Literal", "Semantics", "DPLL", "Consequence" ],
+    "answer" : 2,
+    "explanation" : "DPLL: Davis–Putnam–Logemann–Loveland algorithm: a proof/search procedure for deciding unsatisfiability of CNF formulas using splitting, unit propagation, reduction, and conflict detection."
+  }, {
+    "topic" : "sem",
+    "question" : "Which term matches this definition: Two formulas are equivalent if they have identical truth values under every Assignment (or every Structure in predicate logic).",
+    "options" : [ "Model", "Sequent", "Refutation", "Equivalence" ],
+    "answer" : 3,
+    "explanation" : "Equivalence: Two formulas are equivalent if they have identical truth values under every Assignment (or every Structure in predicate logic)."
+  }, {
+    "topic" : "found",
+    "question" : "Which term matches this definition: A syntactically well-formed expression built recursively from Atoms using logical connectives (and quantifiers in predicate logic).",
+    "options" : [ "Formula", "Negation", "Signature", "Subsumption" ],
+    "answer" : 0,
+    "explanation" : "Formula: A syntactically well-formed expression built recursively from Atoms using logical connectives (and quantifiers in predicate logic)."
+  }, {
+    "topic" : "found",
+    "question" : "Which term matches this definition: A Boolean function (f:{0,1}^n → {0,1}).",
+    "options" : [ "Predicate", "Gate", "Soundness", "Unit" ],
+    "answer" : 1,
+    "explanation" : "Gate: A Boolean function (f:{0,1}^n → {0,1})."
+  }, {
+    "topic" : "norm",
+    "question" : "Which term matches this definition: A formula in CNF where each Clause contains at most one positive Literal.",
+    "options" : [ "Prenex", "Structure", "Horn", "Conflict" ],
+    "answer" : 2,
+    "explanation" : "Horn: A formula in CNF where each Clause contains at most one positive Literal."
+  }, {
+    "topic" : "found",
+    "question" : "Which term matches this definition: A connective (A → B), false only when A is true and B is false.",
+    "options" : [ "Quantifier", "Substitution", "Assignment", "Implication" ],
+    "answer" : 3,
+    "explanation" : "Implication: A connective (A → B), false only when A is true and B is false."
+  }, {
+    "topic" : "found",
+    "question" : "Which term matches this definition: A proof principle establishing a property for all recursively defined objects by proving base and recursive cases.",
+    "options" : [ "Induction", "Resolution", "Syntax", "Atom" ],
+    "answer" : 0,
+    "explanation" : "Induction: A proof principle establishing a property for all recursively defined objects by proving base and recursive cases."
+  }, {
+    "topic" : "norm",
+    "question" : "Which term matches this definition: Either an Atom or its Negation.",
+    "options" : [ "Resolvent", "Literal", "Tautology", "BDD" ],
+    "answer" : 1,
+    "explanation" : "Literal: Either an Atom or its Negation."
+  }, {
+    "topic" : "models",
+    "question" : "Which term matches this definition: An interpretation under which a Formula evaluates true. In propositional logic this is an Assignment; in predicate logic a Structure.",
+    "options" : [ "SAT", "Term", "Model", "Clause" ],
+    "answer" : 2,
+    "explanation" : "Model: An interpretation under which a Formula evaluates true. In propositional logic this is an Assignment; in predicate logic a Structure."
+  }, {
+    "topic" : "found",
+    "question" : "Which term matches this definition: Unary connective ¬A, true iff A is false.",
+    "options" : [ "Satisfiability", "Validity", "CNF", "Negation" ],
+    "answer" : 3,
+    "explanation" : "Negation: Unary connective ¬A, true iff A is false."
+  }, {
+    "topic" : "pred",
+    "question" : "Which term matches this definition: A symbol denoting a relation over objects in a Structure.",
+    "options" : [ "Predicate", "Semantics", "Variable", "Completeness" ],
+    "answer" : 0,
+    "explanation" : "Predicate: A symbol denoting a relation over objects in a Structure."
+  }, {
+    "topic" : "pred",
+    "question" : "Which term matches this definition: A formula is in prenex normal form if all Quantifiers appear at the front, followed by a quantifier-free matrix.",
+    "options" : [ "Sequent", "Prenex", "Proof", "Compactness" ],
+    "answer" : 1,
+    "explanation" : "Prenex: A formula is in prenex normal form if all Quantifiers appear at the front, followed by a quantifier-free matrix."
+  }, {
+    "topic" : "pred",
+    "question" : "Which term matches this definition: Logical operators binding variables: universal (∀) and existential (∃).",
+    "options" : [ "Signature", "Consequence", "Quantifier", "Conjunction" ],
+    "answer" : 2,
+    "explanation" : "Quantifier: Logical operators binding variables: universal (∀) and existential (∃)."
+  }, {
+    "topic" : "res",
+    "question" : "Which term matches this definition: An inference rule deriving a new Clause from two clauses containing complementary Literals.",
+    "options" : [ "Soundness", "Refutation", "Consistency", "Resolution" ],
+    "answer" : 3,
+    "explanation" : "Resolution: An inference rule deriving a new Clause from two clauses containing complementary Literals."
+  }, {
+    "topic" : "res",
+    "question" : "Which term matches this definition: The Clause produced by applying Resolution to two parent clauses.",
+    "options" : [ "Resolvent", "Structure", "Subsumption", "Contradiction" ],
+    "answer" : 0,
+    "explanation" : "Resolvent: The Clause produced by applying Resolution to two parent clauses."
+  }, {
+    "topic" : "sat",
+    "question" : "Which term matches this definition: The decision problem of determining whether a Formula is Satisfiable.",
+    "options" : [ "Substitution", "SAT", "Unit", "Depth" ],
+    "answer" : 1,
+    "explanation" : "SAT: The decision problem of determining whether a Formula is Satisfiable."
+  }, {
+    "topic" : "sem",
+    "question" : "Which term matches this definition: A formula is satisfiable if there exists at least one Model making it true.",
+    "options" : [ "Syntax", "Conflict", "Satisfiability", "Derivation" ],
+    "answer" : 2,
+    "explanation" : "Satisfiability: A formula is satisfiable if there exists at least one Model making it true."
+  }, {
+    "topic" : "sem",
+    "question" : "Which term matches this definition: The formal meaning of logical expressions via interpretations assigning truth values.",
+    "options" : [ "Tautology", "Assignment", "Disjunction", "Semantics" ],
+    "answer" : 3,
+    "explanation" : "Semantics: The formal meaning of logical expressions via interpretations assigning truth values."
+  }, {
+    "topic" : "nd",
+    "question" : "Which term matches this definition: An expression of the form Γ ⊢ A stating A is derivable from assumptions Γ.",
+    "options" : [ "Sequent", "Term", "Atom", "DNF" ],
+    "answer" : 0,
+    "explanation" : "Sequent: An expression of the form Γ ⊢ A stating A is derivable from assumptions Γ."
+  }, {
+    "topic" : "pred",
+    "question" : "Which term matches this definition: A triple ((S,F,P)) specifying sorts, function symbols, and predicate symbols for predicate logic.",
+    "options" : [ "Validity", "Signature", "BDD", "DPLL" ],
+    "answer" : 1,
+    "explanation" : "Signature: A triple ((S,F,P)) specifying sorts, function symbols, and predicate symbols for predicate logic."
+  }, {
+    "topic" : "sound",
+    "question" : "Which term matches this definition: A proof system is sound if every derivable formula is semantically valid.",
+    "options" : [ "Variable", "Clause", "Soundness", "Equivalence" ],
+    "answer" : 2,
+    "explanation" : "Soundness: A proof system is sound if every derivable formula is semantically valid."
+  }, {
+    "topic" : "models",
+    "question" : "Which term matches this definition: An interpretation assigning meanings to symbols of a Signature.",
+    "options" : [ "Proof", "CNF", "Formula", "Structure" ],
+    "answer" : 3,
+    "explanation" : "Structure: An interpretation assigning meanings to symbols of a Signature."
+  }, {
+    "topic" : "pred",
+    "question" : "Which term matches this definition: Replacing variables in a Formula with terms or formulas while preserving syntactic correctness.",
+    "options" : [ "Substitution", "Consequence", "Completeness", "Gate" ],
+    "answer" : 0,
+    "explanation" : "Substitution: Replacing variables in a Formula with terms or formulas while preserving syntactic correctness."
+  }, {
+    "topic" : "found",
+    "question" : "Which term matches this definition: The formal rules specifying which symbol strings are valid Formulas.",
+    "options" : [ "Refutation", "Syntax", "Compactness", "Horn" ],
+    "answer" : 1,
+    "explanation" : "Syntax: The formal rules specifying which symbol strings are valid Formulas."
+  }, {
+    "topic" : "sem",
+    "question" : "Which term matches this definition: A propositional formula true under every Assignment.",
+    "options" : [ "Subsumption", "Conjunction", "Tautology", "Implication" ],
+    "answer" : 2,
+    "explanation" : "Tautology: A propositional formula true under every Assignment."
+  }, {
+    "topic" : "pred",
+    "question" : "Which term matches this definition: A syntactic expression denoting an object in predicate logic, built from constants, variables, and function symbols.",
+    "options" : [ "Unit", "Consistency", "Induction", "Term" ],
+    "answer" : 3,
+    "explanation" : "Term: A syntactic expression denoting an object in predicate logic, built from constants, variables, and function symbols."
+  }, {
+    "topic" : "sem",
+    "question" : "Which term matches this definition: A formula true in every Model (or every Structure).",
+    "options" : [ "Validity", "Conflict", "Contradiction", "Literal" ],
+    "answer" : 0,
+    "explanation" : "Validity: A formula true in every Model (or every Structure)."
+  }, {
+    "topic" : "pred",
+    "question" : "Which term matches this definition: A symbol standing for an arbitrary object (predicate logic) or truth-valued proposition (propositional logic).",
+    "options" : [ "Assignment", "Variable", "Depth", "Model" ],
+    "answer" : 1,
+    "explanation" : "Variable: A symbol standing for an arbitrary object (predicate logic) or truth-valued proposition (propositional logic)."
+  }, {
+    "topic" : "nd",
+    "question" : "Which term matches this definition: A complete Derivation establishing a conclusion.",
+    "options" : [ "Atom", "Derivation", "Proof", "Negation" ],
+    "answer" : 2,
+    "explanation" : "Proof: A complete Derivation establishing a conclusion."
+  }, {
+    "topic" : "sem",
+    "question" : "Which term matches this definition: A formula logically implied by a set of premises.",
+    "options" : [ "BDD", "Disjunction", "Predicate", "Consequence" ],
+    "answer" : 3,
+    "explanation" : "Consequence: A formula logically implied by a set of premises."
+  }, {
+    "topic" : "res",
+    "question" : "Which term matches this definition: A proof of unsatisfiability by deriving Contradiction.",
+    "options" : [ "Refutation", "Clause", "DNF", "Prenex" ],
+    "answer" : 0,
+    "explanation" : "Refutation: A proof of unsatisfiability by deriving Contradiction."
+  }, {
+    "topic" : "res",
+    "question" : "Which term matches this definition: A clause relation used in simplifying Resolution.",
+    "options" : [ "CNF", "Subsumption", "DPLL", "Quantifier" ],
+    "answer" : 1,
+    "explanation" : "Subsumption: A clause relation used in simplifying Resolution."
+  }, {
+    "topic" : "res",
+    "question" : "Which term matches this definition: A Clause containing exactly one Literal.",
+    "options" : [ "Completeness", "Equivalence", "Unit", "Resolution" ],
+    "answer" : 2,
+    "explanation" : "Unit: A Clause containing exactly one Literal."
+  }, {
+    "topic" : "sat",
+    "question" : "Which term matches this definition: In DPLL, detection of the empty clause showing unsatisfiability.",
+    "options" : [ "Compactness", "Formula", "Resolvent", "Conflict" ],
+    "answer" : 3,
+    "explanation" : "Conflict: In DPLL, detection of the empty clause showing unsatisfiability."
+  } ],
+  "quickReference" : [ {
+    "key" : "Validity / Unsatisfiability",
+    "value" : "F is valid iff not-F is unsatisfiable"
+  }, {
+    "key" : "SAT",
+    "value" : "Decidable and NP-complete"
+  }, {
+    "key" : "2-SAT",
+    "value" : "Polynomial time"
+  }, {
+    "key" : "3-SAT",
+    "value" : "NP-complete"
+  }, {
+    "key" : "Predicate SAT",
+    "value" : "Undecidable"
+  }, {
+    "key" : "Completeness",
+    "value" : "Semantic validity aligns with formal derivability"
+  } ],
+  "examTraps" : [ "Valid means true in all models; satisfiable means true in at least one model.", "Resolution soundness and refutation completeness are different claims.", "2-SAT is polynomial, but 3-SAT and general SAT are NP-complete.", "Quantifier scope mistakes can completely change a formalisation.", "Soundness prevents false derivations; completeness prevents missing valid truths." ],
+  "lcwcExclude" : [ ]
+}
