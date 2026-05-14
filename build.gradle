@@ -13,7 +13,7 @@ java {
 }
 
 application {
-    mainClass = "revisionapp.RevisionApplication"
+    mainClass = "revisionapp.ScrolloLauncher"
     applicationName = "scrollo"
 }
 
