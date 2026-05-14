@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "revisionapp"
-version = "1.0.2"
+version = "1.0.3"
 
 java {
     toolchain {
@@ -39,6 +39,7 @@ def windowsUpgradeUuid = "9b11d617-1d83-4baf-a635-32e50645ef4d"
 def jpackageOutputDir = layout.buildDirectory.dir("jpackage")
 def jpackageInstallerDir = layout.buildDirectory.dir("installer")
 def jpackageImageDir = jpackageOutputDir.map { it.dir(appImageName) }
+def debugLauncherProperties = layout.buildDirectory.file("jpackage/scrollo-debug.properties")
 def distributionLibDir = layout.buildDirectory.dir("install/${application.applicationName}/lib")
 
 def jpackageExecutable = providers.provider {
@@ -53,15 +54,24 @@ def jpackageExecutable = providers.provider {
     executable.absolutePath
 }
 
+tasks.register("writeDebugLauncherProperties") {
+    outputs.file(debugLauncherProperties)
+
+    doLast {
+        debugLauncherProperties.get().asFile.text = "win-console=true${System.lineSeparator()}"
+    }
+}
+
 tasks.register("jpackageImage", Exec) {
     group = "distribution"
     description = "Builds a self-contained Windows app image with a native Scrollo.exe launcher."
-    dependsOn tasks.named("installDist")
+    dependsOn tasks.named("installDist"), tasks.named("writeDebugLauncherProperties")
     inputs.dir(distributionLibDir)
+    inputs.file(debugLauncherProperties)
     outputs.dir(jpackageImageDir)
 
     doFirst {
-        delete(jpackageOutputDir)
+        delete(jpackageImageDir)
         commandLine(
                 jpackageExecutable.get(),
                 "--type", "app-image",
@@ -73,7 +83,9 @@ tasks.register("jpackageImage", Exec) {
                 "--input", distributionLibDir.get().asFile.absolutePath,
                 "--main-jar", tasks.named("jar").get().archiveFileName.get(),
                 "--main-class", application.mainClass.get(),
-                "--java-options", "-Dfile.encoding=UTF-8"
+                "--java-options", "-Dfile.encoding=UTF-8",
+                "--jlink-options", "--strip-debug --no-header-files --no-man-pages",
+                "--add-launcher", "ScrolloDebug=${debugLauncherProperties.get().asFile.absolutePath}"
         )
     }
 }
@@ -92,8 +104,8 @@ tasks.register("packageWindowsPortable", Zip) {
 tasks.register("packageWindowsInstaller", Exec) {
     group = "distribution"
     description = "Creates a Windows installer EXE containing Scrollo and its private Java runtime."
-    dependsOn tasks.named("installDist")
-    inputs.dir(distributionLibDir)
+    dependsOn tasks.named("jpackageImage")
+    inputs.dir(jpackageImageDir)
     outputs.dir(jpackageInstallerDir)
 
     doFirst {
@@ -106,12 +118,9 @@ tasks.register("packageWindowsInstaller", Exec) {
                 "--vendor", "Revision App",
                 "--description", appDescription,
                 "--dest", jpackageInstallerDir.get().asFile.absolutePath,
-                "--input", distributionLibDir.get().asFile.absolutePath,
-                "--main-jar", tasks.named("jar").get().archiveFileName.get(),
-                "--main-class", application.mainClass.get(),
-                "--java-options", "-Dfile.encoding=UTF-8",
+                "--app-image", jpackageImageDir.get().asFile.absolutePath,
+                "--install-dir", appDisplayName,
                 "--win-upgrade-uuid", windowsUpgradeUuid,
-                "--win-per-user-install",
                 "--win-dir-chooser",
                 "--win-menu",
                 "--win-menu-group", windowsMenuGroup,
