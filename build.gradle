@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "revisionapp"
-version = "1.0.3"
+version = "1.0.4"
 
 java {
     toolchain {
@@ -40,6 +40,7 @@ def jpackageOutputDir = layout.buildDirectory.dir("jpackage")
 def jpackageInstallerDir = layout.buildDirectory.dir("installer")
 def jpackageImageDir = jpackageOutputDir.map { it.dir(appImageName) }
 def debugLauncherProperties = layout.buildDirectory.file("jpackage/scrollo-debug.properties")
+def debugBatchFile = jpackageImageDir.map { it.file("ScrolloDebug.bat") }
 def distributionLibDir = layout.buildDirectory.dir("install/${application.applicationName}/lib")
 
 def jpackageExecutable = providers.provider {
@@ -58,7 +59,10 @@ tasks.register("writeDebugLauncherProperties") {
     outputs.file(debugLauncherProperties)
 
     doLast {
-        debugLauncherProperties.get().asFile.text = "win-console=true${System.lineSeparator()}"
+        debugLauncherProperties.get().asFile.text = [
+                "win-console=true",
+                "java-options=-Dscrollo.debug.pause=true"
+        ].join(System.lineSeparator()) + System.lineSeparator()
     }
 }
 
@@ -69,6 +73,7 @@ tasks.register("jpackageImage", Exec) {
     inputs.dir(distributionLibDir)
     inputs.file(debugLauncherProperties)
     outputs.dir(jpackageImageDir)
+    outputs.file(debugBatchFile)
 
     doFirst {
         delete(jpackageImageDir)
@@ -87,6 +92,22 @@ tasks.register("jpackageImage", Exec) {
                 "--jlink-options", "--strip-debug --no-header-files --no-man-pages",
                 "--add-launcher", "ScrolloDebug=${debugLauncherProperties.get().asFile.absolutePath}"
         )
+    }
+
+    doLast {
+        debugBatchFile.get().asFile.text = """
+                @echo off
+                setlocal
+                cd /d "%~dp0"
+                echo Starting ScrolloDebug...
+                ScrolloDebug.exe
+                set EXIT_CODE=%ERRORLEVEL%
+                echo.
+                echo ScrolloDebug exited with code %EXIT_CODE%.
+                echo Crash log, if any: %USERPROFILE%\\.revisionapp\\logs\\last-crash.log
+                pause
+                exit /b %EXIT_CODE%
+                """.stripIndent().replace("\n", "\r\n")
     }
 }
 

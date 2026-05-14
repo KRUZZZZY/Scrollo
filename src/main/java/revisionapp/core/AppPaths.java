@@ -7,7 +7,7 @@ public record AppPaths(Path root) {
     private static final String MODULE_ID = "cs375-logic";
 
     public static AppPaths defaults() {
-        return new AppPaths(Path.of(System.getProperty("user.home"), ".revisionapp"));
+        return new AppPaths(Path.of(userProfile(), ".revisionapp"));
     }
 
     public Path settings() {
@@ -19,7 +19,11 @@ public record AppPaths(Path root) {
     }
 
     public Path modules() {
-        return locateProjectModules();
+        Path projectModules = locateProjectModules();
+        if (projectModules != null) {
+            return projectModules;
+        }
+        return root.resolve("modules");
     }
 
     public Path canonicalModule() {
@@ -46,6 +50,14 @@ public record AppPaths(Path root) {
                 return candidate;
             }
         }
-        return current.resolve("src/main/resources/modules");
+        return null;
+    }
+
+    private static String userProfile() {
+        String profile = System.getenv("USERPROFILE");
+        if (profile != null && !profile.isBlank()) {
+            return profile;
+        }
+        return System.getProperty("user.home");
     }
 }

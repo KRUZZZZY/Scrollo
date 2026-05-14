@@ -16,6 +16,7 @@ public class DataBootstrap {
         Files.createDirectories(paths.themes());
         Files.createDirectories(paths.progress());
 
+        copyIfMissing("/modules/cs375-logic.json", paths.canonicalModule());
         copyIfMissing("/themes/dark.jss.json", paths.themes().resolve("dark.jss.json"));
         copyIfMissing("/themes/grey.jss.json", paths.themes().resolve("grey.jss.json"));
         copyIfMissing("/themes/light.jss.json", paths.themes().resolve("light.jss.json"));
